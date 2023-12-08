@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, loadContacts } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+
+import { selectContacts } from '../../redux/selectors';
+import { addContact, fetchContacts } from '../../redux/operations';
 
 export default function ContactForm() {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -26,14 +27,8 @@ export default function ContactForm() {
   };
 
   useEffect(() => {
-    const savedContacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(savedContacts);
-    if (!parsedContacts) {
-      return;
-    }
-    dispatch(loadContacts(parsedContacts));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <form onSubmit={handleSubmit} className={css.form}>
