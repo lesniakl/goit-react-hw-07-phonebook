@@ -1,9 +1,9 @@
-# SimplePhonebook app v2.5
+# SimplePhonebook app v2.8
 
 This is a React app built using
 [Create React App](https://github.com/facebook/create-react-app) as a part of
 GoIT course. It allows you to save phone numbers together with names and store
-them in your browser's local storage.
+them in [mockaAPI](https://mockapi.io/).
 
 ## Features
 
